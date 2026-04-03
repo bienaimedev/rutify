@@ -13,9 +13,9 @@ def generate(*, secure: bool = False) -> "Rut":
     Genera un RUT aleatorio válido.
 
     Args:
-        secure: Si es True, se utilizará el módulo secrets 
+        secure: Si es True, se utilizará el módulo secrets
         para generar un número aleatorio criptográficamente seguro.
-        Si es False, se utilizará el módulo random, 
+        Si es False, se utilizará el módulo random,
         que es más rápido pero menos seguro.
     """
     number = (
@@ -34,11 +34,11 @@ def generate_many(
 
     Args:
         count: La cantidad de RUTs a generar.
-        unique: Si es True, se garantiza que todos los RUTs generados 
+        unique: Si es True, se garantiza que todos los RUTs generados
         sean únicos.
-        secure: Si es True, se utilizará el módulo secrets 
+        secure: Si es True, se utilizará el módulo secrets
         para generar números aleatorios criptográficamente seguros.
-        Si es False, se utilizará el módulo random, 
+        Si es False, se utilizará el módulo random,
         que es más rápido pero menos seguro.
 
     Returns:

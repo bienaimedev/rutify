@@ -37,11 +37,11 @@ def normalize(rut: str) -> str:
 
 def mask(rut: str) -> str:
     """
-    Enmascara un RUT, ocultando todos los dígitos 
+    Enmascara un RUT, ocultando todos los dígitos
     excepto los últimos 4 caracteres (ejemplo: "XX.XXX.678-5").
 
     Args:
-        rut: El RUT a enmascarar, que puede estar 
+        rut: El RUT a enmascarar, que puede estar
         en cualquier formato válido.
     """
     parsed = Rut.parse(rut)

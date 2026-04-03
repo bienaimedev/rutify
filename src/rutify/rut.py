@@ -1,5 +1,5 @@
 """
-Clase RUT que representa un RUT chileno, 
+Clase RUT que representa un RUT chileno,
 compuesto por un número y un dígito verificador (DV).
 """
 
@@ -15,23 +15,20 @@ _MIN_NUMBER = 1_000_000
 _MAX_NUMBER = 99_999_999
 
 
-
-# Regular expression para validar el formato del RUT en 
+# Regular expression para validar el formato del RUT en
 # modo estricto (con guión y sin puntos).
-STRICT_RE = re.compile(
-    r"^\d{1,2}(\.\d{3}){0,2}-[\dKk]$"
-    )
+STRICT_RE = re.compile(r"^\d{1,2}(\.\d{3}){0,2}-[\dKk]$")
 
 
 class Rut:
     """
-    Clase que representa un RUT chileno, compuesto por un número 
+    Clase que representa un RUT chileno, compuesto por un número
     y un dígito verificador (DV).
 
-    El RUT es un identificador único utilizado en Chile para personas 
+    El RUT es un identificador único utilizado en Chile para personas
     naturales y jurídicas.
     El número del RUT debe estar entre 1.000.000 y 99.999.999,
-    y el dígito verificador se calcula a partir del número utilizando 
+    y el dígito verificador se calcula a partir del número utilizando
     un algoritmo específico.
 
     Uso básico:
@@ -50,19 +47,19 @@ class Rut:
 
     def __init__(self, number: int, dv: str | None = None) -> None:
         """
-        Crea una instancia de RUT a partir de un número y 
+        Crea una instancia de RUT a partir de un número y
         un dígito verificador opcional.
 
         Args:
             number: El número del RUT, que debe estar entre 1.000.000
                     y 99.999.999.
-            dv: El dígito verificador del RUT, que puede ser un 
+            dv: El dígito verificador del RUT, que puede ser un
             dígito (0-9) o 'K'.
             Si se proporciona, se validará contra el número.
             Si no se proporciona, se calculará automáticamente.
         Raises:
-            ValueError: Si el número del RUT está fuera del 
-            rango permitido o si el dígito verificador proporcionado 
+            ValueError: Si el número del RUT está fuera del
+            rango permitido o si el dígito verificador proporcionado
             no coincide con el número.
 
         """
@@ -87,12 +84,12 @@ class Rut:
     @classmethod
     def parse(cls, rut: str, *, strict: bool = False) -> Rut:
         """
-        Parsea un RUT a partir de una cadena de texto, 
+        Parsea un RUT a partir de una cadena de texto,
         validando su formato y dígito verificador.
 
         Args:
             rut: La cadena de texto que representa el RUT.
-            strict: Si es True, se aplicará una validación 
+            strict: Si es True, se aplicará una validación
             estricta del formato.
 
         Returns:
@@ -105,8 +102,7 @@ class Rut:
         try:
             if strict and not STRICT_RE.match(rut):
                 raise InvalidRutError(
-                    rut, "no cumple con el formato estricto " \
-                    "dd.ddd.ddd-dv"
+                    rut, "no cumple con el formato estricto dd.ddd.ddd-dv"
                 )
             number, dv = _split_raw(rut)
             return cls(number, dv)
@@ -116,7 +112,7 @@ class Rut:
     @classmethod
     def from_number(cls, number: int) -> Rut:
         """
-        Crea una instancia de RUT a partir de un número, 
+        Crea una instancia de RUT a partir de un número,
         calculando automáticamente el dígito verificador.
         """
         return cls(number)
@@ -137,19 +133,19 @@ class Rut:
 
     def format(self, style: RutStyle = RutStyle.DOTS) -> str:
         """
-        Devuelve una representación formateada del RUT según 
+        Devuelve una representación formateada del RUT según
         el estilo especificado.
 
         Args:
-            style: El estilo de formato a utilizar, que 
+            style: El estilo de formato a utilizar, que
               puede ser uno de los siguientes:
-                - RutStyle.DOTS: Formato con puntos y guión 
+                - RutStyle.DOTS: Formato con puntos y guión
                 (ejemplo: "12.345.678-5").
-                - RutStyle.DASH: Formato sin puntos pero 
+                - RutStyle.DASH: Formato sin puntos pero
                 con guión (ejemplo: "12345678-5").
-                - RutStyle.PLAIN: Formato sin puntos ni 
+                - RutStyle.PLAIN: Formato sin puntos ni
                 guión (ejemplo: "123456785").
-                - RutStyle.DOTS_NO_DASH: Formato con puntos 
+                - RutStyle.DOTS_NO_DASH: Formato con puntos
                 pero sin guión (ejemplo: "12.345.6785").
 
         """
@@ -166,20 +162,19 @@ class Rut:
             case _:
                 valids = ", ".join(f"{s.value!r}" for s in RutStyle)
                 raise ValueError(
-                    f"estilo de formato desconocido: {style!r} \n"
-                    f"(válidos: {valids})"
+                    f"estilo de formato desconocido: {style!r} \n(válidos: {valids})"
                 )
 
     def __str__(self) -> str:
         """
-        Devuelve una representación legible del RUT, 
+        Devuelve una representación legible del RUT,
         utilizando el formato con puntos y guión por defecto.
         """
         return self.format(RutStyle.DOTS)
 
     def __repr__(self) -> str:
         """
-        Devuelve una representación oficial del RUT, 
+        Devuelve una representación oficial del RUT,
         mostrando el número y el dígito verificador por separado.
         """
         return f"RUT(number={self.number}, dv={self.dv!r})"
@@ -200,7 +195,7 @@ class Rut:
         return NotImplemented
 
     def __hash__(self) -> int:
-        """Devuelve un valor hash para la instancia de RUT, 
+        """Devuelve un valor hash para la instancia de RUT,
         basado en su número."""
         return hash(self.number)
 

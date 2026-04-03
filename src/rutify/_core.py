@@ -1,5 +1,5 @@
 """
-Core de computación de RUT, incluyendo el cálculo 
+Core de computación de RUT, incluyendo el cálculo
 del dígito verificador y el parseo de RUT sin formato.
 """
 
@@ -15,17 +15,17 @@ def compute_dv(number: int) -> str:
     Calcula el dígito verificador para un número de RUT dado.
 
     Utiliza el algoritmo de módulo 11, donde los dígitos
-    del número se multiplican por una secuencia de 
+    del número se multiplican por una secuencia de
     factores (2, 3, 4, 5, 6, 7)
     que se repite. La suma de estos productos se divide por 11,
     y el resto se utiliza para determinar el dígito verificador.
 
     Args:
-        number: El número de RUT para el cual se desea calcular 
+        number: El número de RUT para el cual se desea calcular
         el dígito verificador.
 
     Returns:
-        El dígito verificador correspondiente al número de RUT dado, 
+        El dígito verificador correspondiente al número de RUT dado,
         que puede ser un dígito (0-9) o 'K'.
 
     Raises:
@@ -48,10 +48,10 @@ def compute_dv(number: int) -> str:
 
 def _split_raw(rut: str) -> tuple[int, str]:
     """
-    Parsea el RUT sin formato, devolviendo el número 
+    Parsea el RUT sin formato, devolviendo el número
     y el dígito verificador por separado.
 
-    Formatos aceptados: ``12345678-9``, ``123456789`` 
+    Formatos aceptados: ``12345678-9``, ``123456789``
     o ``12.345.678-9``, etc.
 
     Args:

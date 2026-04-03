@@ -38,12 +38,12 @@ def is_valid_number(number: int) -> bool:
     """
     if not isinstance(number, int):
         return False
-    return (_MIN_NUMBER <= number <= _MAX_NUMBER)
+    return _MIN_NUMBER <= number <= _MAX_NUMBER
 
 
 def validate_many(ruts: list[str]) -> list[bool]:
     """
-    Valida una lista de RUTs, devolviendo una lista de booleanos 
+    Valida una lista de RUTs, devolviendo una lista de booleanos
     que indican la validez de cada RUT.
 
     Args:

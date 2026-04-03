@@ -27,7 +27,7 @@ class TestComputeDv:
 
     def test_compute_dv_basic(self):
         """
-        Verifica el cálculo correcto del dígito verificador 
+        Verifica el cálculo correcto del dígito verificador
         para números comunes.
         """
         assert compute_dv(12345678) == "5"
@@ -35,7 +35,7 @@ class TestComputeDv:
 
     def test_compute_dv_returns_k(self):
         """
-        Verifica que el dígito verificador retorne 'K' 
+        Verifica que el dígito verificador retorne 'K'
         cuando corresponde.
         """
         assert compute_dv(1000005) == "K"
@@ -109,7 +109,7 @@ class TestRutInit:
 
     def test_init_with_number_only(self):
         """
-        Verifica la creación de RUT solo con número 
+        Verifica la creación de RUT solo con número
         (DV se calcula automáticamente)."""
         rut = Rut(12345678)
         assert rut.number == 12345678
